@@ -26,8 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
@@ -83,9 +81,8 @@ public class MainActivity extends AppCompatActivity {
                             .getReference()
                             .push()
                             .setValue(new ChatMessage(input.getText().toString(),
-                                    Objects.requireNonNull(FirebaseAuth.getInstance()
-                                                    .getCurrentUser())
-                                            .getDisplayName())
+                                    FirebaseAuth.getInstance()
+                                            .getCurrentUser().getEmail())
                             );
 
                     // Clear the input
